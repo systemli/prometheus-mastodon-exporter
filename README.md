@@ -1,8 +1,8 @@
 # prometheus-mastodon-exporter
 
-[![Integration](https://github.com/systemli/prometheus-mastodon-exporter/actions/workflows/integration.yaml/badge.svg)](https://github.com/systemli/prometheus-mastodon-exporter/actions/workflows/integration.yaml)
-[![Quality](https://github.com/systemli/prometheus-mastodon-exporter/actions/workflows/quality.yaml/badge.svg)](https://github.com/systemli/prometheus-mastodon-exporter/actions/workflows/quality.yaml)
-[![Release](https://github.com/systemli/prometheus-mastodon-exporter/actions/workflows/release.yaml/badge.svg)](https://github.com/systemli/prometheus-mastodon-exporter/actions/workflows/release.yaml)
+[![Integration](https://github.com/systemli/prometheus-mastodon-exporter/actions/workflows/integration.yml/badge.svg)](https://github.com/systemli/prometheus-mastodon-exporter/actions/workflows/integration.yml)
+[![Quality](https://github.com/systemli/prometheus-mastodon-exporter/actions/workflows/quality.yaml/badge.svg)](https://github.com/systemli/prometheus-mastodon-exporter/actions/workflows/quality.yml)
+[![Release](https://github.com/systemli/prometheus-mastodon-exporter/actions/workflows/release.yaml/badge.svg)](https://github.com/systemli/prometheus-mastodon-exporter/actions/workflows/release.yml)
 
 Prometheus Exporter for Mastodon written in Go.
 
