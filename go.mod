@@ -1,4 +1,4 @@
-module github.com/systemli/mastodon-exporter
+module github.com/systemli/prometheus-mastodon-exporter
 
 go 1.19
 
