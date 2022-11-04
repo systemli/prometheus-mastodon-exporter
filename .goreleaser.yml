@@ -17,10 +17,10 @@ dockers:
   - goos: linux
     goarch: amd64
     image_templates:
-      - "systemli/mastodon-exporter:{{ .Tag }}"
-      - "systemli/mastodon-exporter:{{ .Major }}"
-      - "systemli/mastodon-exporter:{{ .Major }}.{{ .Minor }}"
-      - "systemli/mastodon-exporter:latest"
+      - "systemli/prometheus-mastodon-exporter:{{ .Tag }}"
+      - "systemli/prometheus-mastodon-exporter:{{ .Major }}"
+      - "systemli/prometheus-mastodon-exporter:{{ .Major }}.{{ .Minor }}"
+      - "systemli/prometheus-mastodon-exporter:latest"
 checksum:
   name_template: "checksums.txt"
 snapshot:
