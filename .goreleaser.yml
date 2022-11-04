@@ -1,0 +1,29 @@
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarm:
+      - "6"
+      - "7"
+    ldflags:
+      - -s -w
+dockers:
+  - goos: linux
+    goarch: amd64
+    image_templates:
+      - "systemli/mastodon-exporter:{{ .Tag }}"
+      - "systemli/mastodon-exporter:{{ .Major }}"
+      - "systemli/mastodon-exporter:{{ .Major }}.{{ .Minor }}"
+      - "systemli/mastodon-exporter:latest"
+checksum:
+  name_template: "checksums.txt"
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  skip: true
