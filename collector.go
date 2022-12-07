@@ -93,6 +93,7 @@ func fetchInstance() (Instance, error) {
 	if err != nil {
 		return instance, err
 	}
+	defer res.Body.Close()
 
 	err = json.NewDecoder(res.Body).Decode(&instance)
 	return instance, err
@@ -104,7 +105,8 @@ func fetchActivity() (Activities, error) {
 	if err != nil {
 		return activities, err
 	}
-
+	defer res.Body.Close()
+	
 	err = json.NewDecoder(res.Body).Decode(&activities)
 	return activities, err
 }
