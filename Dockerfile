@@ -1,30 +1,30 @@
-FROM alpine:3.19.0 as builder
+# syntax=docker/dockerfile:1
 
-WORKDIR /go/src/github.com/systemli/prometheus-mastodon-exporter
+# Build the application from source
+FROM golang:1.21.4 AS build-stage
 
-ENV USER=appuser
-ENV UID=10001
+WORKDIR /app
 
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "/nonexistent" \
-    --shell "/sbin/nologin" \
-    --no-create-home \
-    --uid "${UID}" \
-    "${USER}"
+COPY go.mod go.sum ./
+RUN go mod download
 
-RUN apk add --no-cache --update ca-certificates
+COPY *.go ./
 
-FROM scratch
+RUN CGO_ENABLED=0 GOOS=linux go build -o /prometheus-mastodon-exporter
 
-COPY --from=builder /etc/passwd /etc/passwd
-COPY --from=builder /etc/group /etc/group
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-COPY prometheus-mastodon-exporter /prometheus-mastodon-exporter
+# Run the tests in the container
+FROM build-stage AS run-test-stage
+RUN go test -v ./...
 
-USER appuser:appuser
+# Deploy the application binary into a lean image
+FROM gcr.io/distroless/base-debian11 AS build-release-stage
+
+WORKDIR /
+
+COPY --from=build-stage /prometheus-mastodon-exporter /prometheus-mastodon-exporter
 
 EXPOSE 13120
+
+USER nonroot:nonroot
 
 ENTRYPOINT ["/prometheus-mastodon-exporter"]
