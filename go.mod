@@ -2,7 +2,7 @@ module github.com/systemli/prometheus-mastodon-exporter
 
 go 1.21
 
-require github.com/prometheus/client_golang v1.20.1
+require github.com/prometheus/client_golang v1.20.2
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
