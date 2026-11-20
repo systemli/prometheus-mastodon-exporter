@@ -65,6 +65,8 @@ jobs:
           permission-contents: write
           permission-pull-requests: write
       - name: Merge
-        uses: fastify/github-action-merge-dependabot@v3
-        with:
-          github-token: ${{ steps.acces_token.outputs.token }}
+        env:
+          GH_TOKEN: ${{ steps.acces_token.outputs.token }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: gh pr merge "$PR_NUMBER" --admin --squash --delete-branch
